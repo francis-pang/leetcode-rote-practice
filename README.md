@@ -1,36 +1,63 @@
-# Rote Practice for LeetCode
+# LeetCode Spaced Repetition Practice System
 
-This program is inspired by the book _Make It Stick_. I read the first few chapters of the book, and I am inspired to make a program that can track your learning progress. 
+## Overview
 
-# Features
-### Spaced repetition
-This is the main feature of the program. This program allows you to see what is the list of programs that are due for repeated practice. You will be able to know which Leetcode question to do when you open this up.
+This project aims to develop a spaced repetition system for LeetCode practice, inspired by the cognitive science principles outlined in the book "Make It Stick". The system is designed to optimize learning and retention of coding skills by scheduling practice sessions based on individual performance and forgetting curves.
 
-# Getting Started
-**I will write this once I have get the program to a working state.**
+## System Architecture
 
-# Progress
-There are a few tasks which I foresee that I need to do:
-1. Build the schema for retrieval practice
+### Data Storage
+- **Primary Database**: Amazon DynamoDB
 
-This will be the schema for DynamoDB. I planned to build a test table using the Amazon developer console first. The second stage of this will be to have the actual DynamoDB table built using the command line command. An additional optional step is to build this in the AWS Cloud Development Kit (CDK).
+### Backend Services
+- **Language**: GoLang
+- **Deployment**: AWS Lambda functions
+- **API Integration**: Unofficial LeetCode API for practice data retrieval
 
-2. Manually set up the Postman to pull data of past practiced questions
+### Frontend (Optional)
+- Lightweight interface for daily practice recommendations
 
-There seems to be a unofficial API of Leetcode. I have read it before. I will find out what do I need to query my past practice time for a particular question. I probably need a credential, and a URI with some query parameter.
+## Key Features
 
-3. Insert and update the data into the DynamoDB
+1. **Spaced Repetition Algorithm**: Core functionality to determine optimal practice intervals
+2. **Automated Data Collection**: Regular updates of user practice data from LeetCode
+3. **Personalized Practice Recommendations**: Daily suggestions based on user history and performance
+4. **Progress Tracking**: Visualization of long-term learning progress
 
-I will pull the data for a few questions, then explore how to insert those new data into the database. Similarly as step 1, first using the developer console, then AWS CLI, and optionally in AWS CDK. These form the basis for the full fledge program.
+## Development Roadmap
 
-4. Write GoLang function to pull from Leetcode website
+### Phase 1: Data Model and Storage
+1. Design and implement DynamoDB schema
+   - Initial setup via AWS Management Console
+   - Migration to AWS CLI for reproducibility
+   - (Optional) Implementation using AWS CDK for infrastructure as code
 
-Once I have done all the preceding steps, I have tested the technical feasibility of this feature, and I can pull all the materials together into a program, i.e a GoLang program. I deliberately choose GoLang for the program, because I am going to embed this into a AWS Lambda function. The GoLang program will query the attempted data of a question from Leetcode system and update the information in the database.
+2. Develop data insertion and update mechanisms
+   - Console-based testing
+   - CLI implementation
 
-5. Automate pulling data
+### Phase 2: Data Retrieval and Processing
+1. Set up Postman collection for LeetCode API testing
+   - Identify required endpoints and authentication methods
+   - Create and test API queries for practice history
 
-Once I have finished the program, the next thing is to schedule pulling the question bank information and updating the database. I might need to tweak the program to query and update a range of questions, and do this in batches. This should be done a rate limited way, so that I don't trigger any rate limiting mechanism of the Leetcode system.
+2. Develop GoLang functions for data retrieval
+   - Implement API calls to LeetCode
+   - Process and transform retrieved data
+   - Integrate with DynamoDB for storage
 
-6. Pull data from DynamoDB for question to practice
+### Phase 3: Automation and Scheduling
+1. Implement batch processing for efficient data updates
+2. Design and deploy rate-limiting mechanism to prevent API abuse
+3. Set up AWS CloudWatch events for scheduled data pulls
 
-Once we have the data, the important thing is to retrieve the data. I will write a query on developer console to return the data, then progress to adapt it in the AWS CLI, and format it in a way that I will be able to digest it easily. If needed, I can build a simple front-end to check daily.
+### Phase 4: Retrieval and Presentation
+1. Develop DynamoDB queries for practice recommendations
+   - Console-based testing
+   - CLI implementation for data extraction
+2. Design data presentation format for easy consumption
+3. (Optional) Develop simple frontend for daily practice suggestions
+
+## Getting Started
+
+(To be completed upon reaching a functional prototype stage)
